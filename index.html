@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='UTF-8'><meta name="robots" content="noindex">
+	
+	<link rel='stylesheet' href='http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css'>
+	<link rel='stylesheet' href='http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css'>
+	<link rel='stylesheet' href='main.css'>
+
+	<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+    <script src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js'></script>
+    <script src='http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js'></script>
+    <script src='http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore.js'></script>
+	
+    
+  </head>
+  <body>
+    <div class="container">
+      <h1>Brew-Boss Step Generator</h1>
+      <p>Use this generator to create the STP files needed for the Brew-Boss app.  Hover of the column headings for tips.  Each line can be edited, deleted or moved up and down.  Visit the <a href="http://www.brew-boss.com">Brew-Boss website</a> for the latest documentation.</p>
+  
+      <div id="table" class="table-editable">
+        <span class="table-add glyphicon glyphicon-plus"></span>
+        <table class="table">
+		<tbody class="sortable">
+          <tr>
+            <th title="This is a number from 1 to 5 indicating the step type as defined below.&#013;Type 1 – Prompt User with User Confirmation Required.&#013;Type 2 – Prompt User Without Confirmation&#013;Type 3 – Heat Kettle to Specified Setpoint&#013;Type 4 – Maintain Temperature for Specified Time&#013;Type 5 – Cool Kettle to Specified Setpoint">Step Type<br /><span class="glyphicon glyphicon-info-sign"></span>
+			</th>
+            <th title="This is the text that will be displayed by the application to identify to the user what step is being executed. It is also the prompt that will be verbally enunciated if the TTS option is enabled for that step. Note: The Prompt parameter cannot include any commas or quotation marks!">Prompt<br /><span class="glyphicon glyphicon-info-sign"></span></th>
+		    <th title="This is the temperature that the controller should heat to and/or maintain for the step being defined. Enter zero if the heater is not required for the step being defined. Temperatures must be in the same units as is defined in the system parameters.">Setpoint<br /><span class="glyphicon glyphicon-info-sign"></span></th>
+            <th title="This is the time for this step and only applies to step type 4 as that is the only step that incorporates a timer. The time should be entered in minutes. So 1.5 hours would be 90 minutes.">Step Timer<br /><span class="glyphicon glyphicon-info-sign"></span></th>
+		    <th title="This parameter tells the controller that we are trying to boil the contents of the kettle and is only used for step types 3 and 4.">Boil Flag<br /><span class="glyphicon glyphicon-info-sign"></span></th>
+            <th title="This parameter tells the controller that you want the pump turned on for the step. Setting it to 1 turns the pump on when the step begins. Setting it to 0 forces the pump off.">Pump Flag<br /><span class="glyphicon glyphicon-info-sign"></span></th>
+		    <th title="This parameter is used when the Optional Hops Boss®  automatic hops feeder is installed. This tells the controller which hops positions (0-7) to dispense to the kettle, where position 0 is home. Values entered for the hops feeder must be sequential. Set this parameter to 0 if the hops feeder is not installed.">Hops Pos<br /><span class="glyphicon glyphicon-info-sign"></span></th>
+            <th title="This parameter tells the controller that you want the Prompt parameter described above to be verbally enunciated by the controller. The controller will “read” the text you defined in the Prompt field. Setting this parameter to 1 enables text speech output for that step and setting to 0 does not use speech.">Speak<br /><span class="glyphicon glyphicon-info-sign"></span></th>
+		    <th title="This parameter tells the controller to sound an alarm to alert the user. Setting to 1 enables the alarm and 0 disables the alarm for the current step. If you have entered an e-mail address and are connected to a local network with internet service, the system will also send an e-mail when the alarm is triggered.">Alarm Flag<br /><span class="glyphicon glyphicon-info-sign"></span></th>
+            <th></th>
+            <th></th>
+          </tr>
+          <tr class="removeRow">
+            <td contenteditable="true">1</td>
+            <td contenteditable="true">Fill kettle with water</td>
+		    <td contenteditable="true">0</td>
+		    <td contenteditable="true">0</td>
+		    <td contenteditable="true">0</td>
+		    <td contenteditable="true">0</td>
+		    <td contenteditable="true">0</td>
+		    <td contenteditable="true">1</td>
+		    <td contenteditable="true">0</td>
+            <td><span class="table-remove glyphicon glyphicon-remove"></span></td>
+            <td><span class="table-move glyphicon glyphicon-move"></span></td>
+          </tr>
+		  <tr class="removeRow">
+            <td contenteditable="true">1</td>
+            <td contenteditable="true">Place cover on kettle and open the valve</td>
+		    <td contenteditable="true">0</td>
+		    <td contenteditable="true">0</td>
+		    <td contenteditable="true">0</td>
+		    <td contenteditable="true">0</td>
+		    <td contenteditable="true">0</td>
+		    <td contenteditable="true">1</td>
+		    <td contenteditable="true">0</td>
+            <td><span class="table-remove glyphicon glyphicon-remove"></span></td>
+            <td><span class="table-move glyphicon glyphicon-move"></span></td>
+          </tr>
+		  <tr class="removeRow">
+            <td contenteditable="true">3</td>
+            <td contenteditable="true">Heating water to strike temperature of 154</td>
+		    <td contenteditable="true">154</td>
+		    <td contenteditable="true">0</td>
+		    <td contenteditable="true">0</td>
+		    <td contenteditable="true">1</td>
+		    <td contenteditable="true">0</td>
+		    <td contenteditable="true">1</td>
+		    <td contenteditable="true">0</td>
+            <td><span class="table-remove glyphicon glyphicon-remove"></span></td>
+            <td><span class="table-move glyphicon glyphicon-move"></span></td>
+          </tr>
+		  <tr class="removeRow">
+            <td contenteditable="true">1</td>
+            <td contenteditable="true">Water at strike temperature. Close valve and add grains</td>
+		    <td contenteditable="true">152</td>
+		    <td contenteditable="true">0</td>
+		    <td contenteditable="true">0</td>
+		    <td contenteditable="true">0</td>
+		    <td contenteditable="true">0</td>
+		    <td contenteditable="true">1</td>
+		    <td contenteditable="true">1</td>
+            <td><span class="table-remove glyphicon glyphicon-remove"></span></td>
+            <td><span class="table-move glyphicon glyphicon-move"></span></td>
+          </tr>
+		  <tr class="removeRow">
+            <td contenteditable="true">1</td>
+            <td contenteditable="true">Place cover on kettle and open valve</td>
+		    <td contenteditable="true">152</td>
+		    <td contenteditable="true">0</td>
+		    <td contenteditable="true">0</td>
+		    <td contenteditable="true">0</td>
+		    <td contenteditable="true">0</td>
+		    <td contenteditable="true">1</td>
+		    <td contenteditable="true">0</td>
+            <td><span class="table-remove glyphicon glyphicon-remove"></span></td>
+            <td><span class="table-move glyphicon glyphicon-move"></span></td>
+          </tr>
+		  <tr class="removeRow">
+            <td contenteditable="true">3</td>
+            <td contenteditable="true">Heating to mash temperature of 152</td>
+		    <td contenteditable="true">152</td>
+		    <td contenteditable="true">0</td>
+		    <td contenteditable="true">0</td>
+		    <td contenteditable="true">1</td>
+		    <td contenteditable="true">0</td>
+		    <td contenteditable="true">1</td>
+		    <td contenteditable="true">0</td>
+            <td><span class="table-remove glyphicon glyphicon-remove"></span></td>
+            <td><span class="table-move glyphicon glyphicon-move"></span></td>
+          </tr>
+		  <tr class="removeRow">
+            <td contenteditable="true">4</td>
+            <td contenteditable="true">Maintaining mash temperature of 152</td>
+		    <td contenteditable="true">154</td>
+		    <td contenteditable="true">60</td>
+		    <td contenteditable="true">0</td>
+		    <td contenteditable="true">1</td>
+		    <td contenteditable="true">0</td>
+		    <td contenteditable="true">1</td>
+		    <td contenteditable="true">0</td>
+            <td><span class="table-remove glyphicon glyphicon-remove"></span></td>
+            <td><span class="table-move glyphicon glyphicon-move"></span></td>
+          </tr>
+		  <tr class="removeRow">
+            <td contenteditable="true">3</td>
+            <td contenteditable="true">Heating to mash out temperature of 168</td>
+		    <td contenteditable="true">168</td>
+		    <td contenteditable="true">0</td>
+		    <td contenteditable="true">0</td>
+		    <td contenteditable="true">1</td>
+		    <td contenteditable="true">0</td>
+		    <td contenteditable="true">1</td>
+		    <td contenteditable="true">0</td>
+            <td><span class="table-remove glyphicon glyphicon-remove"></span></td>
+            <td><span class="table-move glyphicon glyphicon-move"></span></td>
+          </tr>
+		  <tr class="removeRow">
+            <td contenteditable="true">4</td>
+            <td contenteditable="true">Maintaining mash out temperature of 168</td>
+		    <td contenteditable="true">168</td>
+		    <td contenteditable="true">10</td>
+		    <td contenteditable="true">0</td>
+		    <td contenteditable="true">1</td>
+		    <td contenteditable="true">0</td>
+		    <td contenteditable="true">1</td>
+		    <td contenteditable="true">0</td>
+            <td><span class="table-remove glyphicon glyphicon-remove"></span></td>
+            <td><span class="table-move glyphicon glyphicon-move"></span></td>
+          </tr>
+		  <tr class="removeRow">
+            <td contenteditable="true">1</td>
+            <td contenteditable="true">Mash out complete. Close valve and remove cover</td>
+		    <td contenteditable="true">168</td>
+		    <td contenteditable="true">0</td>
+		    <td contenteditable="true">0</td>
+		    <td contenteditable="true">0</td>
+		    <td contenteditable="true">0</td>
+		    <td contenteditable="true">1</td>
+		    <td contenteditable="true">1</td>
+            <td><span class="table-remove glyphicon glyphicon-remove"></span></td>
+            <td><span class="table-move glyphicon glyphicon-move"></span></td>
+          </tr>
+		  <tr class="removeRow">
+            <td contenteditable="true">1</td>
+            <td contenteditable="true">Remove the grain bag</td>
+		    <td contenteditable="true">190</td>
+		    <td contenteditable="true">0</td>
+		    <td contenteditable="true">0</td>
+		    <td contenteditable="true">0</td>
+		    <td contenteditable="true">0</td>
+		    <td contenteditable="true">1</td>
+		    <td contenteditable="true">0</td>
+            <td><span class="table-remove glyphicon glyphicon-remove"></span></td>
+            <td><span class="table-move glyphicon glyphicon-move"></span></td>
+          </tr>
+		  <tr class="removeRow">
+            <td contenteditable="true">3</td>
+            <td contenteditable="true">Heating wort to boiling</td>
+		    <td contenteditable="true">220</td>
+		    <td contenteditable="true">0</td>
+		    <td contenteditable="true">1</td>
+		    <td contenteditable="true">0</td>
+		    <td contenteditable="true">0</td>
+		    <td contenteditable="true">1</td>
+		    <td contenteditable="true">0</td>
+            <td><span class="table-remove glyphicon glyphicon-remove"></span></td>
+            <td><span class="table-move glyphicon glyphicon-move"></span></td>
+          </tr>
+		  <tr class="removeRow">
+            <td contenteditable="true">2</td>
+            <td contenteditable="true">Boiling. &nbsp;Add 60 minute hops</td>
+		    <td contenteditable="true">220</td>
+		    <td contenteditable="true">0</td>
+		    <td contenteditable="true">1</td>
+		    <td contenteditable="true">0</td>
+		    <td contenteditable="true">0</td>
+		    <td contenteditable="true">1</td>
+		    <td contenteditable="true">1</td>
+            <td><span class="table-remove glyphicon glyphicon-remove"></span></td>
+            <td><span class="table-move glyphicon glyphicon-move"></span></td>
+          </tr>
+		  <tr class="removeRow">
+            <td contenteditable="true">4</td>
+            <td contenteditable="true">Maintaining boil for 50 minutes</td>
+		    <td contenteditable="true">220</td>
+		    <td contenteditable="true">50</td>
+		    <td contenteditable="true">1</td>
+		    <td contenteditable="true">0</td>
+		    <td contenteditable="true">0</td>
+		    <td contenteditable="true">1</td>
+		    <td contenteditable="true">0</td>
+            <td><span class="table-remove glyphicon glyphicon-remove"></span></td>
+            <td><span class="table-move glyphicon glyphicon-move"></span></td>
+          </tr>
+		  <tr class="removeRow">
+            <td contenteditable="true">2</td>
+            <td contenteditable="true">Add 10 minute hops, whirfloc and chiller</td>
+		    <td contenteditable="true">220</td>
+		    <td contenteditable="true">0</td>
+		    <td contenteditable="true">1</td>
+		    <td contenteditable="true">0</td>
+		    <td contenteditable="true">0</td>
+		    <td contenteditable="true">1</td>
+		    <td contenteditable="true">1</td>
+            <td><span class="table-remove glyphicon glyphicon-remove"></span></td>
+            <td><span class="table-move glyphicon glyphicon-move"></span></td>
+          </tr>
+		  <tr class="removeRow">
+            <td contenteditable="true">4</td>
+            <td contenteditable="true">Maintaining boil for 10 minutes</td>
+		    <td contenteditable="true">220</td>
+		    <td contenteditable="true">10</td>
+		    <td contenteditable="true">1</td>
+		    <td contenteditable="true">0</td>
+		    <td contenteditable="true">0</td>
+		    <td contenteditable="true">1</td>
+		    <td contenteditable="true">0</td>
+            <td><span class="table-remove glyphicon glyphicon-remove"></span></td>
+            <td><span class="table-move glyphicon glyphicon-move"></span></td>
+          </tr>
+		  <tr class="removeRow">
+            <td contenteditable="true">1</td>
+            <td contenteditable="true">Boil complete. Open valve and turn on chiller water</td>
+		    <td contenteditable="true">68</td>
+		    <td contenteditable="true">0</td>
+		    <td contenteditable="true">0</td>
+		    <td contenteditable="true">0</td>
+		    <td contenteditable="true">0</td>
+		    <td contenteditable="true">1</td>
+		    <td contenteditable="true">1</td>
+            <td><span class="table-remove glyphicon glyphicon-remove"></span></td>
+            <td><span class="table-move glyphicon glyphicon-move"></span></td>
+          </tr>
+		  <tr class="removeRow">
+            <td contenteditable="true">5</td>
+            <td contenteditable="true">Recirculate to chill</td>
+		    <td contenteditable="true">68</td>
+		    <td contenteditable="true">0</td>
+		    <td contenteditable="true">0</td>
+		    <td contenteditable="true">1</td>
+		    <td contenteditable="true">0</td>
+		    <td contenteditable="true">1</td>
+		    <td contenteditable="true">0</td>
+            <td><span class="table-remove glyphicon glyphicon-remove"></span></td>
+            <td><span class="table-move glyphicon glyphicon-move"></span></td>
+          </tr>
+	      <tr class="removeRow">
+            <td contenteditable="true">4</td>
+            <td contenteditable="true">Chilling complete. &nbsp;Let stand for 30 minutes</td>
+		    <td contenteditable="true">0</td>
+		    <td contenteditable="true">30</td>
+		    <td contenteditable="true">0</td>
+		    <td contenteditable="true">0</td>
+		    <td contenteditable="true">0</td>
+		    <td contenteditable="true">1</td>
+		    <td contenteditable="true">0</td>
+            <td><span class="table-remove glyphicon glyphicon-remove"></span></td>
+            <td><span class="table-move glyphicon glyphicon-move"></span></td>
+          </tr>
+	      <tr class="removeRow">
+            <td contenteditable="true">1</td>
+            <td contenteditable="true">Brewing complete. &nbsp;Rack to fermentor.</td>
+		    <td contenteditable="true">0</td>
+		    <td contenteditable="true">0</td>
+		    <td contenteditable="true">0</td>
+		    <td contenteditable="true">0</td>
+		    <td contenteditable="true">0</td>
+		    <td contenteditable="true">1</td>
+		    <td contenteditable="true">1</td>
+            <td><span class="table-remove glyphicon glyphicon-remove"></span></td>
+            <td><span class="table-move glyphicon glyphicon-move"></span></td>
+          </tr>
+          <!-- This is our clonable table line -->
+          <tr class="hide">
+            <td contenteditable="true">1</td>
+            <td contenteditable="true">Prompt</td>
+		    <td contenteditable="true">0</td>
+		    <td contenteditable="true">0</td>
+		    <td contenteditable="true">0</td>
+		    <td contenteditable="true">0</td>
+		    <td contenteditable="true">0</td>
+		    <td contenteditable="true">0</td>
+		    <td contenteditable="true">0</td>
+            <td><span class="table-remove glyphicon glyphicon-remove"></span></td>
+            <td><span class="table-move glyphicon glyphicon-move"></td>
+          </tr>
+		 </tbody>
+        </table>
+      </div>
+	  
+	  <input type="file" id="files" name="files[]" multiple class="inputfile" />
+	  <label for="files" class="btn btn-primary">Load Step File</label>
+	  
+	  <a href="#" class="btn btn-primary export">Export Step File</a>
+	</div>
+  </body>
+  <script>$(".sortable").sortable();</script>
+  <script src='main.js'></script>
+  <script src='jquery.csv.js'></script>
+</html>
