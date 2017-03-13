@@ -9,3 +9,5 @@ Features:
 
 
 To use this generator you can either import a step file from your Brew Boss application or modify the default one that is included.  Once the step file is complete it can be saved to later be imported into the Brew Boss software on the tablet.  For Android, I use an app called AirDroid to transfer the files to the tablet.
+
+Demo: http://brewingintheburgh.com/brew-boss/index.html
